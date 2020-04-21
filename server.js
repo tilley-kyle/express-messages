@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bp = require('body-parser');
+const mongoose = require('mongoose');
 
 // if you are using mongo/mongoose uncomment this line
 const Message = require('./db/Message');
@@ -20,7 +21,10 @@ app.use(bp.json());
 //create a message    'api/messages'
 app.post('/api/messages', (req, res) => {
   let message = new Message({id: 1, name: 'kyle', message: 'yo yo yo yo'})
-  res.send(message);
+  message.save(err => {
+    if (err) throw err;
+  })
+  res.send('I have spoken');
 });
 
 //retrieve all messages, array of objects    'api/messages'
