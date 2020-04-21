@@ -13,19 +13,34 @@ app.use((req,res,next) => {
 
 const port = 3000;
 
-app.listen(port, () => {
+app.listen(port, (req, res) => {
   console.log('Listening on port', port);
 });
 
 //create a message    'api/messages'
+app.post('api/messages', (req, res) => {
+
+});
 
 //retrieve all messages, array of objects    'api/messages'
+app.get('api/messages', (req, res) => {
+
+});
 
 //update a specific message    'api/messages/1'
+app.put('api/messages/1', (req, res) => {
+
+});
 
 //delete a specific message    'api/messges/1'
+app.delete('api/messages/1', (req, res) => {
+
+});
 
 //get a specific message       'api/messages/1'
+app.get('api/messages/1', (req, res) => {
+
+});
 
 
 
