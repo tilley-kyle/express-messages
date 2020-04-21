@@ -1,9 +1,21 @@
 //Message Model
 // If you are using mongo/mongoose create your schema here
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/messages', { useNewUrlParser: true, useUnifiedTopology: true });
 
-const db = require('./mongoconfig');
+let db = mongoose.connection;
+db.on('error', () => { console.log('Cobra won this time') });
+db.once('open', () => {
+  console.log('Everyone knows that a mongoose will kill a cobra');
+});
 
-const Message = null;
 
+let messageSchema = new mongoose.Schema({
+  id: Number,
+  name: String,
+  message: String
+});
+
+const Message = mongoose.model('Message', messageSchema);
 
 module.exports = Message;

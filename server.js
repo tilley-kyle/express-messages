@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
+const bp = require('body-parser');
 
 // if you are using mongo/mongoose uncomment this line
-// const Message = require('./db/Message');
+const Message = require('./db/Message');
 
 // if you are using postgres, uncomment this line
-const pool = require('./db/pgconfig');
+// const pool = require('./db/pgconfig');
 
 const port = 3000;
 
@@ -13,13 +14,18 @@ app.listen(port, (req, res) => {
   console.log('Listening on port', port);
 });
 
+app.use(bp.json());
+// app.use(bp.urlencoded())   look up the rest of this
+
 //create a message    'api/messages'
 app.post('/api/messages', (req, res) => {
-  res.send('hi from post');
+  let message = new Message({id: 1, name: 'kyle', message: 'yo yo yo yo'})
+  res.send(message);
 });
 
 //retrieve all messages, array of objects    'api/messages'
 app.get('/api/messages', (req, res) => {
+  // console.log(req.body, req.params)
   res.send('hi from get all messages');
 });
 
@@ -37,6 +43,8 @@ app.delete('/api/messages/:di', (req, res) => {
 app.get('/api/messages/:id', (req, res) => {
   res.send('hi from get one message');
 });
+
+
 
 app.use((req,res,next) => {
   res.status(404).send('That route does not exist');
