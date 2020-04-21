@@ -5,11 +5,7 @@ const app = express();
 // const Message = require('./db/Message');
 
 // if you are using postgres, uncomment this line
-// const pool = require('./db/pgconfig');
-
-app.use((req,res,next) => {
-  res.status(404).send('That route does not exist');
-});
+const pool = require('./db/pgconfig');
 
 const port = 3000;
 
@@ -18,30 +14,32 @@ app.listen(port, (req, res) => {
 });
 
 //create a message    'api/messages'
-app.post('api/messages', (req, res) => {
-
+app.post('/api/messages', (req, res) => {
+  res.send('hi from post');
 });
 
 //retrieve all messages, array of objects    'api/messages'
-app.get('api/messages', (req, res) => {
-
+app.get('/api/messages', (req, res) => {
+  res.send('hi from get all messages');
 });
 
 //update a specific message    'api/messages/1'
-app.put('api/messages/1', (req, res) => {
-
+app.put('/api/messages/:id', (req, res) => {
+  res.send('hi from put');
 });
 
 //delete a specific message    'api/messges/1'
-app.delete('api/messages/1', (req, res) => {
-
+app.delete('/api/messages/:di', (req, res) => {
+  res.send('hi from delete');
 });
 
 //get a specific message       'api/messages/1'
-app.get('api/messages/1', (req, res) => {
-
+app.get('/api/messages/:id', (req, res) => {
+  res.send('hi from get one message');
 });
 
-
+app.use((req,res,next) => {
+  res.status(404).send('That route does not exist');
+});
 
 module.exports = app;
