@@ -17,4 +17,16 @@ app.listen(port, () => {
   console.log('Listening on port', port);
 });
 
+//create a message    'api/messages'
+
+//retrieve all messages, array of objects    'api/messages'
+
+//update a specific message    'api/messages/1'
+
+//delete a specific message    'api/messges/1'
+
+//get a specific message       'api/messages/1'
+
+
+
 module.exports = app;
