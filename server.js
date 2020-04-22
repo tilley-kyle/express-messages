@@ -36,14 +36,12 @@ app.get('/api/messages', (req, res) => {
 });
 
 //update a specific message    'api/messages/1'
-app.put('/api/messages/:id', (req, res) => {
-  res.send('hi from put');
+app.patch('/api/messages/:id', (req, res) => {
+  res.send('hi from patch');
 });
 
 //delete a specific message    'api/messges/1'
 app.delete('/api/messages/:id', (req, res) => {
-
-  console.log(req.params)
   Message.findOneAndDelete({id: req.params.id})
   .then( info => {
     res.status(201);
@@ -53,7 +51,11 @@ app.delete('/api/messages/:id', (req, res) => {
 
 //get a specific message       'api/messages/1'
 app.get('/api/messages/:id', (req, res) => {
-  res.send('hi from get one message');
+  Message.find({id: req.paramas.id})
+    .then( info => {
+      res.status(201);
+      res.send(info);
+    })
 });
 
 
