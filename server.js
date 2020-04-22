@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 
 // if you are using mongo/mongoose uncomment this line
 const Message = require('./db/Message');
-const findAll = require('./db/Message');
 
 // if you are using postgres, uncomment this line
 // const pool = require('./db/pgconfig');
