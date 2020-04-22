@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 // if you are using mongo/mongoose uncomment this line
 const Message = require('./db/Message');
+const findAll = require('./db/Message');
 
 // if you are using postgres, uncomment this line
 // const pool = require('./db/pgconfig');
@@ -28,8 +29,8 @@ app.post('/api/messages', (req, res) => {
 
 //retrieve all messages, array of objects    'api/messages'
 app.get('/api/messages', (req, res) => {
-  // console.log(req.body, req.params)
-  res.send('hi from get all messages');
+  Message.find()
+    .then(array => {res.send(array)} );
 });
 
 //update a specific message    'api/messages/1'

@@ -18,5 +18,5 @@ let messageSchema = new mongoose.Schema({
 
 const Message = mongoose.model('Message', messageSchema);     //apparently this is bad. read more on mongoose docs under multiple connections.
                                                               //only have one connection so using this way for now
-
 module.exports = Message;
+
