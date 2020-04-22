@@ -37,7 +37,11 @@ app.get('/api/messages', (req, res) => {
 
 //update a specific message    'api/messages/1'
 app.patch('/api/messages/:id', (req, res) => {
-  res.send('hi from patch');
+  Message.findOneAndUpdate({id: req.params.id}, req.body)
+    .then( stuff => {
+      res.status(201);
+      res.send('It is updated');
+    })
 });
 
 //delete a specific message    'api/messges/1'
