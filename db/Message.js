@@ -11,6 +11,7 @@ db.once('open', () => {
 
 
 let messageSchema = new mongoose.Schema({
+  id: Number,
   name: String,
   message: String
 });

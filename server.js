@@ -20,11 +20,10 @@ app.use(bp.json());
 
 //create a message    'api/messages'
 app.post('/api/messages', (req, res) => {
-  // let message = new Message({name: 'kyle', message: 'yo yo yo yo'})
-  // message.save(err => {
-  //   if (err) throw err;
-  // })
-  res.send(req.body);
+  const message = new Message(req.body)
+  message.save();
+  res.status(201);
+  res.send('I have spoken');
 });
 
 //retrieve all messages, array of objects    'api/messages'
