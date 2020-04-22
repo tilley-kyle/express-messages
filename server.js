@@ -17,7 +17,7 @@ app.listen(port, (req, res) => {
 });
 
 app.use(bp.json());
-// app.use(bp.urlencoded())   look up the rest of this
+app.use(bp.urlencoded({extended: true}));
 
 //create a message    'api/messages'
 app.post('/api/messages', (req, res) => {
@@ -30,7 +30,9 @@ app.post('/api/messages', (req, res) => {
 //retrieve all messages, array of objects    'api/messages'
 app.get('/api/messages', (req, res) => {
   Message.find()
-    .then(array => {res.send(array)} );
+    .then(array => {
+      res.status(201)
+      res.send(array)} );
 });
 
 //update a specific message    'api/messages/1'
@@ -39,8 +41,14 @@ app.put('/api/messages/:id', (req, res) => {
 });
 
 //delete a specific message    'api/messges/1'
-app.delete('/api/messages/:di', (req, res) => {
-  res.send('hi from delete');
+app.delete('/api/messages/:id', (req, res) => {
+
+  console.log(req.params)
+  Message.findOneAndDelete({id: req.params.id})
+  .then( info => {
+    res.status(201);
+    res.send('it\'s deleted yo');
+  })
 });
 
 //get a specific message       'api/messages/1'
